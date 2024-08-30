@@ -32,15 +32,15 @@ const perguntas = [
         ]
     },
     {
-        enunciado: " Pergunta?",
+        enunciado: " Você acredita que a inteligência artificial será um fator decisivo na transformação dos modelos de negócios nos próximos cinco anos?",
         alternativas: [
             {
-                texto: " Texto/resposta ",
-                afirmacao: " Afirmação ",
+                texto: " Sim, sua capacidade de automatizar processos, analisar grandes volumes de dados e personalizar experiências promete revolucionar diversas indústrias",
+                afirmacao: " Você é uma pessoa que acredita no potencial transformador da IA e vê a tecnologia como um motor de inovação",
             },
             {
-                texto: " Texto/resposta ",
-                afirmacao: " Afirmação ",
+                texto: "Não, acredito que a IA será importante, mas não será o fator decisivo na transformação nos modelos de negócios nos próximos 5 anos ",
+                afirmacao: " Você é uma pessoa cautelosa em relação ao impacto da IA, acreditando que outros fatores também serão cruciais na transformação dos negócios ",
             }
         ]
     },
@@ -74,19 +74,39 @@ const perguntas = [
 
 let atual = 0;
 let perguntaAtual;
+let historiaFinal = "";
 
 function mostraPergunta(){
+    if(atual >= perguntas.length){
+        mostraResultado();
+        return;
+    }
     perguntaAtual = perguntas[atual];
     caixaPerguntas.textContent = perguntaAtual.enunciado;
+    caixaAlternativas.textContent = "";
     mostraAlternativas();
 }
 
 function mostraAlternativas(){
-    for (const alternativas of perguntaAtual.alternativas){
+    for (const alternativa of perguntaAtual.alternativas){
         const botaoAlternativas = document.createElement("button");
-        botaoAlternativas.textContent = alternativas.texto;
+        botaoAlternativas.textContent = alternativa.texto;
+        botaoAlternativas.addEventListener("click",() => respostaSelecionada(alternativa));
         caixaAlternativas.appendChild(botaoAlternativas);
     }
+}
+
+function respostaSelecionada(opcaoSelecionada){
+    const afirmacoes = opcaoSelecionada.afirmacao;
+    historiaFinal += afirmacoes + " ";
+    atual++;
+    mostraPergunta();
+}
+
+function mostraResultado(){
+    caixaPerguntas.textContent = "Em 2049...";
+    textoResultado.textContent = historiaFinal;
+    caixaAlternativas.textContent = "";
 }
 
 mostraPergunta();
