@@ -9,7 +9,7 @@ const perguntas = [
         enunciado: "Você acha que a IA vai ajudar na tomada de decisões da empresa?",
         alternativas: [
             {
-                texto: "Sim, pois ela vai tomar decisões na base de rezões e dados",
+                texto: "Sim, pois ela vai tomar decisões na base de razões e dados",
                 afirmacao: "Você é uma pessoa que acredita na tecnologia e num futuro próspero com a IA",
             },
             {
